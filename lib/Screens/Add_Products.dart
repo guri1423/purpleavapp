@@ -1,0 +1,720 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:purpleavapp/Screens/SignIn.dart';
+import 'package:purpleavapp/main.dart';
+import 'package:purpleavapp/Screens/SignUp.dart';
+
+import '../Widgets/image_widgets.dart';
+
+class AddProducts extends StatefulWidget {
+  const AddProducts({Key? key}) : super(key: key);
+
+  @override
+  State<AddProducts> createState() => _AddProductsState();
+}
+
+class _AddProductsState extends State<AddProducts> {
+  var _image;
+
+
+  bool form=false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Color(0xff9C037F),
+        title: Row(
+          children: [
+            Text('Add Products',
+            ),
+          ],
+        ),
+      ),
+
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Total Products",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontFamily: "Lato",
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "128",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 26,
+                                  fontFamily: "Lato",
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: 31,
+                                height: 31,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: CircleAvatar(radius: 20),
+                              ),
+                            )
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Product In",
+                            style: TextStyle(
+                              color: Color(0xccffffff),
+                              fontSize: 16,
+                              fontFamily: "Lato",
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    width: 160,
+                    height: 150,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Color(0xff9c037f),
+                    ),
+                  ),
+                  Spacer(),
+                  Container(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Stock In Hand",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontFamily: "Lato",
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "500",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 26,
+                                  fontFamily: "Lato",
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: 31,
+                                height: 31,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: CircleAvatar(radius: 20),
+                              ),
+                            )
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Product Out",
+                            style: TextStyle(
+                              color: Color(0xccffffff),
+                              fontSize: 16,
+                              fontFamily: "Lato",
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+
+                    width: 160,
+                    height: 150,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Color(0xff9c037f),
+                    ),
+                  ),
+
+
+                ],
+              ),
+
+              form ?   addProduct(context) :   GestureDetector(
+                onTap: (){
+                  setState(() {
+                    form=true;
+                  });
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  child: Container(
+                    width: 363,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Color(0xff9c037f), width: 1.50, ),
+                    ),
+
+                    child: Center(
+                      child: Text(
+                        "Add Product",
+                        style: TextStyle(
+                          color: Color(0xff9c037f),
+                          fontSize: 20,
+                          fontFamily: "Lato",
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+
+  Widget addProduct(BuildContext context){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: 10,),
+        Text(
+          "Upload Equipment Images ",
+          style: TextStyle(
+            color: Color(0xff0a0a0a),
+            fontSize: 18,
+            fontFamily: "Lato",
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        SizedBox(height: 10,),
+        GestureDetector(onTap: (){
+          showDialog(context: context,
+              builder:(BuildContext context){
+                return Dialog(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Container(
+                    height: 200,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: GestureDetector(
+                              onTap:()=>Navigator.pop(context),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        height: 25,
+                                        width: 25,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffd72027),
+                                          shape: BoxShape.circle,
+
+                                        ),
+                                        child: Icon(Icons.close,color: Colors.white,size: 15,),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 5),
+                                    child: Container(
+                                      width: 289,
+                                      height: 45,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(4),
+                                        color: Color(0xff9c037f),
+                                      ),
+                                      child: Center(
+                                        child: GestureDetector(onTap: (){
+                                          getImage();
+                                          Navigator.pop(context);
+                                        },
+                                          child: Text(
+                                            "Import from gallery",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                              fontFamily: "Lato",
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 5),
+                                    child: Container(
+                                      width: 289,
+                                      height: 45,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(4),
+                                        color: Color(0xff9c037f),
+                                      ),
+                                      child: Center(
+                                        child: GestureDetector(onTap: (){
+                                          getImage().then((value) {
+                                            setState(() {
+                                              _image = File(value);
+                                            });
+                                          });
+                                          Navigator.pop(context);
+                                        },
+                                          child: Text(
+                                            "Import from Camera",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                              fontFamily: "Lato",
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+
+                          SizedBox(height: 20,),
+
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              });
+
+        },
+          child: Container(
+            width: 365,
+            height: 203,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('images/upload.png'),
+                Text(
+                  "Upload up to 5 image",
+                  style: TextStyle(
+                    color: Color(0xffa3a3a3),
+                    fontSize: 18,
+                    fontFamily: "Lato",
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  "(345×255 or larger recommended, up to )",
+                  style: TextStyle(
+                    color: Color(0xffa3a3a3),
+                    fontSize: 14,
+                    fontFamily: "Lato",
+                    fontWeight: FontWeight.w700,
+                  ),
+                )
+              ],
+            ),
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+              color: Color(0xfff6f6f6),
+            ),
+          ),
+        ),
+        SizedBox(height: 10,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+          _image != null? Container(
+            width: 82,
+            height: 84,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: FileImage(_image!)
+              ),
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+              color: Color(0xfff6f6f6),
+            ),
+          ):   Container(
+              width: 82,
+              height: 84,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+                color: Color(0xfff6f6f6),
+              ),
+            ),
+            Container(
+              width: 82,
+              height: 84,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+                color: Color(0xfff6f6f6),
+              ),
+            ),
+            Container(
+              width: 82,
+              height: 84,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+                color: Color(0xfff6f6f6),
+              ),
+            ),
+            Container(
+              width: 82,
+              height: 84,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+                color: Color(0xfff6f6f6),
+              ),
+            ),
+          ],
+        ),
+
+        SizedBox(height: 20,),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GestureDetector(
+            onTap:(){
+
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Color(0xff9C037F),
+              ),
+              height: 50,
+              alignment: Alignment.center,
+              width:MediaQuery.of(context).size.width,
+              child: GestureDetector(onTap: (){
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SignIn()));
+              },
+                child: Center(
+                  child: Text('Upload Manual', style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            "Equipment Details",
+            style: TextStyle(
+              color: Color(0xff0a0a0a),
+              fontSize: 18,
+              fontFamily: "Lato",
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Equipment Name',
+              hintStyle: TextStyle(
+        color: Color(0xffb9b9b9),
+        fontSize: 16,
+        fontFamily: "Lato",
+        fontWeight: FontWeight.w500,
+      ),
+            ),
+          ),
+        ),
+        SizedBox(height: 5,),
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Price',
+              hintStyle: TextStyle(
+                color: Color(0xffb9b9b9),
+                fontSize: 16,
+                fontFamily: "Lato",
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 5,),
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Model',
+              hintStyle: TextStyle(
+                color: Color(0xffb9b9b9),
+                fontSize: 16,
+                fontFamily: "Lato",
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 5,),
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Brand',
+              hintStyle: TextStyle(
+                color: Color(0xffb9b9b9),
+                fontSize: 16,
+                fontFamily: "Lato",
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 5,),
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Inventory',
+              hintStyle: TextStyle(
+                color: Color(0xffb9b9b9),
+                fontSize: 16,
+                fontFamily: "Lato",
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 5,),
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Price',
+              hintStyle: TextStyle(
+                color: Color(0xffb9b9b9),
+                fontSize: 16,
+                fontFamily: "Lato",
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 5,),
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Delivery & Pickup',
+              hintStyle: TextStyle(
+                color: Color(0xffb9b9b9),
+                fontSize: 16,
+                fontFamily: "Lato",
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 5,),
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'More Information',
+              hintStyle: TextStyle(
+                color: Color(0xffb9b9b9),
+                fontSize: 16,
+                fontFamily: "Lato",
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 5,),
+        Container(
+          width: 365,
+          height: 159,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Term & Conditions',
+              hintStyle: TextStyle(
+                color: Color(0xffb9b9b9),
+                fontSize: 16,
+                fontFamily: "Lato",
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+
+        SizedBox(height: 40),
+        GestureDetector(
+          onTap: (){
+            setState(() {
+              form=false;
+            });
+          },
+          child: Container(
+            height: 50,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                color: Color(0xff9c037f),
+                borderRadius: BorderRadius.circular(20)
+
+            ),
+              child: Center(
+                child: Text(
+                  "Add Product",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontFamily: "Lato",
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              )
+
+          ),
+        ),
+
+      ],
+    );
+  }
+
+
+}
+
+
+

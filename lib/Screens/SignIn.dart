@@ -1,0 +1,260 @@
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:purpleavapp/Screens/ForgotPassword.dart';
+import 'package:purpleavapp/Screens/SignUp.dart';
+import 'package:purpleavapp/Screens/home.dart';
+import 'dart:io';
+
+import 'package:purpleavapp/Screens/welcom_screen.dart';
+class SignIn extends StatefulWidget {
+  const SignIn({Key? key}) : super(key: key);
+
+
+
+
+
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+
+
+class _SignInState extends State<SignIn> {
+  final TextEditingController _email= TextEditingController();
+
+  final TextEditingController _password=TextEditingController();
+  bool _showPassword = false;
+  bool _ischecked=false;
+
+  late Box box1;
+
+  void iniState(){
+    super.initState();
+    createBox();
+    getdata();
+  }
+  void createBox()async{
+    box1= await Hive.openBox('logindata');
+  }
+  void getdata(){
+    if(box1.get('email')!= null){
+      _email.text = box1.get('email');
+    }
+    if(box1.get('password')!= null){
+      _password.text = box1.get('password');
+
+    }
+  }
+
+  void login(){
+    if(_ischecked){
+      box1.put('email', _email.text);
+      box1.put('password', _password.text);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+            children: [
+
+
+
+
+              Container(
+                height: 290,
+                width: MediaQuery.of(context).size.width,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16, bottom: 20),
+                            child: GestureDetector( onTap: (){
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) => WelcomeScreen()));
+                            },
+
+                                child: Icon(Icons.arrow_back_ios)),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 20,),
+
+
+                      Text('LOGIN',
+                          style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold
+                          )
+                      ),
+                      SizedBox(height: 20,),
+                      Text('Login to continue',
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold
+                          )
+                      ),
+                    ],
+                  ),
+                ),
+
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.fitHeight,
+                    image: AssetImage('images/login.png'
+
+                    ),
+                  ),
+                ),
+              ),
+
+
+              SizedBox(height: 20,),
+
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: _email,
+                  decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(12),
+                      hintText: 'Enter Email',
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                      )
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    obscureText: _showPassword,
+                    controller: _password,
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(12),
+                      hintText: 'Enter Password',
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _showPassword = !_showPassword;
+                          });
+                        },
+                        child: Icon(
+                          _showPassword ? Icons.visibility : Icons.visibility_off,
+                        ),
+                      ),
+                    ),
+                  )
+              ),
+
+              SizedBox(height: 5,),
+              Row(mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Checkbox(
+                      fillColor: MaterialStateProperty.resolveWith<Color>((
+                          states) {
+                        if (states.contains(MaterialState.disabled)) {
+                          return Color(0xff9C037F);
+                        }
+                        return Color(0xff9C037F);
+                      }),
+                      value: _ischecked, onChanged: (value) {
+                    _ischecked = !_ischecked;
+                    setState(() {
+
+                    });
+                  }),
+                  Text('Remember Me'),
+
+                  Spacer(),
+
+                  GestureDetector(onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(
+                        builder: (context) => ForgotPassword()));
+                  },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Forgot Password?',
+                        style: TextStyle(
+                            color: Color(0xff9C037F)
+                        ),
+                        textAlign: TextAlign.right,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 70),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    login();
+
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => Home()));
+
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xff9C037F),
+                    ),
+                    height: 50,
+                    alignment: Alignment.center,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
+                    child: Center(
+                      child: Text('Login', style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 30,),
+              RichText(
+                text: TextSpan(
+                  text: 'Don\'t have an account?  ',
+                  style: TextStyle(fontSize: 15, color: Colors.black),
+                  children: <TextSpan>[
+                    TextSpan(text: ' Sign Up', style: TextStyle(fontSize: 15,
+                        color: Colors.blueAccent),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () async {
+                            Navigator.push(context, MaterialPageRoute(
+                                builder: (context) => SignUp()));
+
+                          }),
+                  ],
+                ),
+              )
+
+
+            ]
+        ),
+      ),
+
+    );
+
+
+
+      }
+
+    }
+
+
+
