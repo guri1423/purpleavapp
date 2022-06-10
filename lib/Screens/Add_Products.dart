@@ -8,6 +8,7 @@ import 'package:purpleavapp/Screens/SignUp.dart';
 
 import '../Widgets/image_widgets.dart';
 
+
 class AddProducts extends StatefulWidget {
   const AddProducts({Key? key}) : super(key: key);
 
@@ -16,10 +17,13 @@ class AddProducts extends StatefulWidget {
 }
 
 class _AddProductsState extends State<AddProducts> {
-  var _image;
-
 
   bool form=false;
+  File? _image1;
+  File? _image2;
+  File? _image3;
+  File? _image4;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -282,7 +286,29 @@ class _AddProductsState extends State<AddProducts> {
                                       ),
                                       child: Center(
                                         child: GestureDetector(onTap: (){
-                                          getImage();
+                                          getImage(ImageSource.gallery).then((value) {
+                                            setState(() {
+                                              if(_image1 == null){
+                                                setState(() {
+                                                  _image1= File(value!.path);
+                                                });
+                                              }else if(_image2 == null){
+                                                setState(() {
+                                                  _image2= File(value!.path);
+                                                });
+                                              }else if(_image3 == null){
+                                                setState(() {
+                                                  _image3= File(value!.path);
+                                                });
+                                              }else if(_image4 == null){
+                                                setState(() {
+                                                  _image4= File(value!.path);
+                                                });
+                                              }
+
+
+                                            });
+                                          });
                                           Navigator.pop(context);
                                         },
                                           child: Text(
@@ -309,11 +335,29 @@ class _AddProductsState extends State<AddProducts> {
                                       ),
                                       child: Center(
                                         child: GestureDetector(onTap: (){
-                                          getImage().then((value) {
-                                            setState(() {
-                                              _image = File(value);
-                                            });
-                                          });
+                                         getImage(ImageSource.camera).then((value) {
+                                           setState(() {
+                                             if(_image1 == null){
+                                               setState(() {
+                                                 _image1= File(value!.path);
+                                               });
+                                             }else if(_image2 == null){
+                                               setState(() {
+                                                 _image2= File(value!.path);
+                                               });
+                                             }else if(_image3 == null){
+                                               setState(() {
+                                                 _image3= File(value!.path);
+                                               });
+                                             }else if(_image4 == null){
+                                               setState(() {
+                                                 _image4= File(value!.path);
+                                               });
+                                             }
+
+
+                                           });
+                                         });
                                           Navigator.pop(context);
                                         },
                                           child: Text(
@@ -380,58 +424,51 @@ class _AddProductsState extends State<AddProducts> {
           ),
         ),
         SizedBox(height: 10,),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-          _image != null? Container(
-            width: 82,
-            height: 84,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: FileImage(_image!)
-              ),
-              borderRadius: BorderRadius.circular(4),
-              border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
-              color: Color(0xfff6f6f6),
-            ),
-          ):   Container(
-              width: 82,
-              height: 84,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
-                color: Color(0xfff6f6f6),
-              ),
-            ),
-            Container(
-              width: 82,
-              height: 84,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
-                color: Color(0xfff6f6f6),
-              ),
-            ),
-            Container(
-              width: 82,
-              height: 84,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
-                color: Color(0xfff6f6f6),
-              ),
-            ),
-            Container(
-              width: 82,
-              height: 84,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
-                color: Color(0xfff6f6f6),
-              ),
-            ),
-          ],
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: 84,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 0),
+            child: ListView.builder(
+              itemCount: 4,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                List<File?>name=[
+                  _image1,
+                  _image2,
+                  _image3,
+                  _image4
+                ];
+              return  Padding(padding: EdgeInsets.only(right: MediaQuery.of(context).size.width*0.025),
+              child: name[index]!= null
+                  ? Container(
+                width: 82,
+                height: 84,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.contain,
+                      image: FileImage(name[index]!)
+                  ),
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+                  color: Color(0xfff6f6f6),
+                ),
+              )
+                  :   Container(
+                width: 82,
+                height: 84,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+                  color: Color(0xfff6f6f6),
+                ),
+              ),);
+            }),
+          ),
         ),
+
 
         SizedBox(height: 20,),
         Padding(
