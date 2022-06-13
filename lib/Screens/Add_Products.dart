@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:purpleavapp/Screens/SignIn.dart';
+import 'package:purpleavapp/Widgets/custom_drawer.dart';
 import 'package:purpleavapp/main.dart';
 import 'package:purpleavapp/Screens/SignUp.dart';
 
@@ -23,6 +24,7 @@ class _AddProductsState extends State<AddProducts> {
   File? _image2;
   File? _image3;
   File? _image4;
+  bool price=false;
 
   @override
   Widget build(BuildContext context) {
@@ -225,6 +227,7 @@ class _AddProductsState extends State<AddProducts> {
 
 
   Widget addProduct(BuildContext context){
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -475,7 +478,6 @@ class _AddProductsState extends State<AddProducts> {
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
             onTap:(){
-
             },
             child: Container(
               decoration: BoxDecoration(
@@ -532,28 +534,67 @@ class _AddProductsState extends State<AddProducts> {
           ),
         ),
         SizedBox(height: 5,),
-        Container(
-          width: 365,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
-            color: Colors.white,
-          ),
-
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Price',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
-              ),
+        GestureDetector(
+          onTap: (){
+            setState(() {
+              if(price){
+                price=false;
+              }else{
+                price=true;
+              }
+            });
+          },
+          child: Container(
+            width: 365,
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+              color: Colors.white,
             ),
+            child:Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Price",
+                  style: TextStyle(
+                          color: Color(0xffb9b9b9),
+                          fontSize: 16,
+                          fontFamily: "Lato",
+                          fontWeight: FontWeight.w500,
+                  ),),
+
+                  price?Icon(Icons.keyboard_arrow_up):Icon(Icons.keyboard_arrow_down)
+                ],
+              ),
+            )
+            // TextField(
+            //   decoration: InputDecoration(
+            //     border: InputBorder.none,
+            //     hintText: 'Price',
+            //     hintStyle: TextStyle(
+            //       color: Color(0xffb9b9b9),
+            //       fontSize: 16,
+            //       fontFamily: "Lato",
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
           ),
         ),
+
+       /// here I have imported my custom dropdown
+        /// just change list content name
+       price?CustomDropDown( title:const[
+         "Weekend Special",
+         "One day Price",
+         "Two day Rental Price",
+         "Three day Rental Price",
+         "Weekly Rental Price",
+         "Package 1"
+       ]):Container(),
         SizedBox(height: 5,),
         Container(
           width: 365,
