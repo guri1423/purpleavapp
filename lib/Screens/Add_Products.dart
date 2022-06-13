@@ -17,12 +17,16 @@ class AddProducts extends StatefulWidget {
 }
 
 class _AddProductsState extends State<AddProducts> {
+  
+
 
   bool form=false;
+  bool form1 = false;
   File? _image1;
   File? _image2;
   File? _image3;
   File? _image4;
+
 
   @override
   Widget build(BuildContext context) {
@@ -488,10 +492,22 @@ class _AddProductsState extends State<AddProducts> {
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SignIn()));
               },
                 child: Center(
-                  child: Text('Upload Manual', style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Text('Upload Manual(pdf only)', style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                        ),
+
+                        Spacer(),
+
+                        Image.asset('images/pdf.png')
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -518,20 +534,61 @@ class _AddProductsState extends State<AddProducts> {
             color: Colors.white,
           ),
 
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Equipment Name',
-              hintStyle: TextStyle(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Equipment Name(Text)',
+                hintStyle: TextStyle(
         color: Color(0xffb9b9b9),
         fontSize: 16,
         fontFamily: "Lato",
         fontWeight: FontWeight.w500,
       ),
+              ),
             ),
           ),
         ),
-        SizedBox(height: 5,),
+        SizedBox(height: 10,),
+
+    form1 ?   pricelist(context) : GestureDetector(
+    onTap: (){
+    setState(() {
+    form=true;
+    });
+    },
+          child: Container(
+            width: 365,
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+              color: Colors.white,
+            ),
+
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Price',
+                  hintStyle: TextStyle(
+                    color: Color(0xffb9b9b9),
+                    fontSize: 16,
+                    fontFamily: "Lato",
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+
+
+
+
+        SizedBox(height: 10,),
         Container(
           width: 365,
           height: 50,
@@ -541,20 +598,23 @@ class _AddProductsState extends State<AddProducts> {
             color: Colors.white,
           ),
 
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Price',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Model(Text)',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
         ),
-        SizedBox(height: 5,),
+        SizedBox(height: 10,),
         Container(
           width: 365,
           height: 50,
@@ -564,20 +624,23 @@ class _AddProductsState extends State<AddProducts> {
             color: Colors.white,
           ),
 
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Model',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Brand Name(Text)',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
         ),
-        SizedBox(height: 5,),
+        SizedBox(height: 10,),
         Container(
           width: 365,
           height: 50,
@@ -587,20 +650,23 @@ class _AddProductsState extends State<AddProducts> {
             color: Colors.white,
           ),
 
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Brand',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Inventory',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
         ),
-        SizedBox(height: 5,),
+        SizedBox(height: 10,),
         Container(
           width: 365,
           height: 50,
@@ -610,20 +676,23 @@ class _AddProductsState extends State<AddProducts> {
             color: Colors.white,
           ),
 
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Inventory',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Price',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
         ),
-        SizedBox(height: 5,),
+        SizedBox(height: 10,),
         Container(
           width: 365,
           height: 50,
@@ -633,20 +702,23 @@ class _AddProductsState extends State<AddProducts> {
             color: Colors.white,
           ),
 
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Price',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Delivery & Pickup',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
         ),
-        SizedBox(height: 5,),
+        SizedBox(height: 10,),
         Container(
           width: 365,
           height: 50,
@@ -656,43 +728,23 @@ class _AddProductsState extends State<AddProducts> {
             color: Colors.white,
           ),
 
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Delivery & Pickup',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'More Information(Text)',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
         ),
-        SizedBox(height: 5,),
-        Container(
-          width: 365,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
-            color: Colors.white,
-          ),
-
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'More Information',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: 5,),
+        SizedBox(height: 10,),
         Container(
           width: 365,
           height: 159,
@@ -702,19 +754,27 @@ class _AddProductsState extends State<AddProducts> {
             color: Colors.white,
           ),
 
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Term & Conditions',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Term & Conditions(Text)',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
         ),
+
+        Container(
+
+        ),
+
 
         SizedBox(height: 40),
         GestureDetector(
@@ -749,6 +809,8 @@ class _AddProductsState extends State<AddProducts> {
       ],
     );
   }
+
+  pricelist(BuildContext context) {}
 
 
 }

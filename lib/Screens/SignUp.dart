@@ -245,7 +245,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(height: 10,),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
@@ -258,7 +258,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 10),
                 Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
@@ -280,6 +280,19 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                     )
+                ),
+                SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.all(12),
+                        hintText: 'Enter Phone number',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                        )
+                    ),
+                  ),
                 ),
                 SizedBox(height: 20),
                 Padding(
