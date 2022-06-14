@@ -25,6 +25,8 @@ class _AddProductsState extends State<AddProducts> {
   File? _image3;
   File? _image4;
   bool price=false;
+  bool package=false;
+  bool delivery=false;
 
   @override
   Widget build(BuildContext context) {
@@ -520,16 +522,19 @@ class _AddProductsState extends State<AddProducts> {
             color: Colors.white,
           ),
 
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Equipment Name',
-              hintStyle: TextStyle(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Equipment Name (Text)',
+                hintStyle: TextStyle(
         color: Color(0xffb9b9b9),
         fontSize: 16,
         fontFamily: "Lato",
         fontWeight: FontWeight.w500,
       ),
+              ),
             ),
           ),
         ),
@@ -593,7 +598,6 @@ class _AddProductsState extends State<AddProducts> {
          "Two day Rental Price",
          "Three day Rental Price",
          "Weekly Rental Price",
-         "Package 1"
        ]):Container(),
         SizedBox(height: 5,),
         Container(
@@ -605,15 +609,18 @@ class _AddProductsState extends State<AddProducts> {
             color: Colors.white,
           ),
 
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Model',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Model (Text)',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
@@ -628,15 +635,18 @@ class _AddProductsState extends State<AddProducts> {
             color: Colors.white,
           ),
 
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Brand',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Brand (Text)',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
@@ -651,84 +661,164 @@ class _AddProductsState extends State<AddProducts> {
             color: Colors.white,
           ),
 
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Inventory',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Inventory',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
         ),
         SizedBox(height: 5,),
+        GestureDetector(
+          onTap: (){
+            setState(() {
+              if(package){
+                package=false;
+              }else{
+                package=true;
+              }
+            });
+          },
+          child: Container(
+              width: 365,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+                color: Colors.white,
+              ),
+              child:Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Package",
+                      style: TextStyle(
+                        color: Color(0xffb9b9b9),
+                        fontSize: 16,
+                        fontFamily: "Lato",
+                        fontWeight: FontWeight.w500,
+                      ),),
+
+                    package?Icon(Icons.keyboard_arrow_up):Icon(Icons.keyboard_arrow_down)
+                  ],
+                ),
+              )
+            // TextField(
+            //   decoration: InputDecoration(
+            //     border: InputBorder.none,
+            //     hintText: 'Price',
+            //     hintStyle: TextStyle(
+            //       color: Color(0xffb9b9b9),
+            //       fontSize: 16,
+            //       fontFamily: "Lato",
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+          ),
+        ),
+
+        /// here I have imported my custom dropdown
+        /// just change list content name
+        package?CustomDropDown( title:const[
+          "Package 1",
+          "Package 2",
+
+        ]):Container(),
+
+        SizedBox(height: 5,),
+        GestureDetector(
+          onTap: (){
+            setState(() {
+              if(delivery){
+                delivery=false;
+              }else{
+                delivery=true;
+              }
+            });
+          },
+          child: Container(
+              width: 365,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+                color: Colors.white,
+              ),
+              child:Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Delivery & Pickup",
+                      style: TextStyle(
+                        color: Color(0xffb9b9b9),
+                        fontSize: 16,
+                        fontFamily: "Lato",
+                        fontWeight: FontWeight.w500,
+                      ),),
+
+                    delivery?Icon(Icons.keyboard_arrow_up):Icon(Icons.keyboard_arrow_down)
+                  ],
+                ),
+              )
+            // TextField(
+            //   decoration: InputDecoration(
+            //     border: InputBorder.none,
+            //     hintText: 'Price',
+            //     hintStyle: TextStyle(
+            //       color: Color(0xffb9b9b9),
+            //       fontSize: 16,
+            //       fontFamily: "Lato",
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+          ),
+        ),
+
+        /// here I have imported my custom dropdown
+        /// just change list content name
+        delivery?CustomDropDown( title:const[
+          "Delivery",
+          "Pickup",
+          "Shipping"
+
+        ]):Container(),
+        SizedBox(height: 5,),
         Container(
           width: 365,
-          height: 50,
+          height: 150,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
             border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
             color: Colors.white,
           ),
 
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Price',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: 5,),
-        Container(
-          width: 365,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
-            color: Colors.white,
-          ),
-
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Delivery & Pickup',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: 5,),
-        Container(
-          width: 365,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
-            color: Colors.white,
-          ),
-
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'More Information',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'More Information (Text)',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
@@ -743,15 +833,18 @@ class _AddProductsState extends State<AddProducts> {
             color: Colors.white,
           ),
 
-          child: TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Term & Conditions',
-              hintStyle: TextStyle(
-                color: Color(0xffb9b9b9),
-                fontSize: 16,
-                fontFamily: "Lato",
-                fontWeight: FontWeight.w500,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Term & Conditions (Text)',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),

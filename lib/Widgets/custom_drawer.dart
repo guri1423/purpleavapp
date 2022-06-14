@@ -33,13 +33,22 @@ class _CustomDropDownState extends State<CustomDropDown> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
-                Text(widget.title[index]),
-                Spacer(),
-                Checkbox(value: value[index], onChanged: (val){
+                Checkbox(
+                     fillColor: MaterialStateProperty.resolveWith<Color>((
+                states) {
+          if (states.contains(MaterialState.disabled)) {
+          return Color(0xff9C037F);
+          }
+          return Color(0xff9C037F);
+          }),
+                    value: value[index], onChanged: (val){
                   setState(() {
                     value[index]=val!;
                   });
-                })
+                }),
+                SizedBox(width: 15,),
+                Text(widget.title[index]),
+
               ],
             ),
           );
@@ -47,5 +56,27 @@ class _CustomDropDownState extends State<CustomDropDown> {
     );
   }
 }
+
+class TextFieldDropDown extends StatefulWidget {
+  const TextFieldDropDown({Key? key}) : super(key: key);
+
+  @override
+  State<TextFieldDropDown> createState() => _TextFieldDropDownState();
+}
+
+class _TextFieldDropDownState extends State<TextFieldDropDown> {
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+
+    );
+  }
+}
+
+
+
 
 
