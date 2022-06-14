@@ -491,11 +491,21 @@ class _AddProductsState extends State<AddProducts> {
               child: GestureDetector(onTap: (){
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SignIn()));
               },
-                child: Center(
-                  child: Text('Upload Manual', style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Center(
+                        child: Text('Upload Manual (pdf only)', style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),),
+                      ),
+                      Spacer(),
+
+                      Image.asset('images/pdf.png')
+                    ],
+                  ),
                 ),
               ),
             ),
