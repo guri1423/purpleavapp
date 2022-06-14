@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
         title: 'purpleavapp',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-
           primarySwatch: Colors.blue,
         ),
       home: WelcomeScreen(),

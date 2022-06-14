@@ -600,8 +600,6 @@ class _AddProductsState extends State<AddProducts> {
           ),
         ),
 
-       /// here I have imported my custom dropdown
-        /// just change list content name
        price?CustomDropDown( title:const[
          "Weekend Special",
          "One day Price",
@@ -799,12 +797,7 @@ class _AddProductsState extends State<AddProducts> {
 
         /// here I have imported my custom dropdown
         /// just change list content name
-        delivery?CustomDropDown( title:const[
-          "Delivery",
-          "Pickup",
-          "Shipping"
-
-        ],expand: false,):Container(),
+        delivery?CustomDropDown2():Container(),
         SizedBox(height: 5,),
         Container(
           width: 365,
