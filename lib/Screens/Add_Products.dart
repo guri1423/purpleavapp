@@ -608,7 +608,7 @@ class _AddProductsState extends State<AddProducts> {
          "Two day Rental Price",
          "Three day Rental Price",
          "Weekly Rental Price",
-       ]):Container(),
+       ],expand: true,hint: "price",):Container(),
         SizedBox(height: 5,),
         Container(
           width: 365,
@@ -739,13 +739,11 @@ class _AddProductsState extends State<AddProducts> {
           ),
         ),
 
-        /// here I have imported my custom dropdown
-        /// just change list content name
         package?CustomDropDown( title:const[
           "Package 1",
           "Package 2",
 
-        ]):Container(),
+        ],expand: true,hint: "package",):Container(),
 
         SizedBox(height: 5,),
         GestureDetector(
@@ -806,7 +804,7 @@ class _AddProductsState extends State<AddProducts> {
           "Pickup",
           "Shipping"
 
-        ]):Container(),
+        ],expand: false,):Container(),
         SizedBox(height: 5,),
         Container(
           width: 365,
