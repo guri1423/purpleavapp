@@ -15,3 +15,10 @@ Future getImage(ImageSource source) async {
  return pickedFile;
 }
 
+Future  getImage1() async {
+ XFile? pickedFile1 = await ImagePicker().pickImage(source: ImageSource.camera);
+ return pickedFile1;
+
+ }
+
+

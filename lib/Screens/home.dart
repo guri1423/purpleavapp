@@ -9,7 +9,10 @@ import 'package:purpleavapp/Screens/Transactions.dart';
 import 'package:purpleavapp/Screens/logout.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  int? index;
+ Home({Key? key,
+    this.index
+  }) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -23,11 +26,22 @@ List<Widget>_body=[
   MyAccount(),
 
 ];
-int selectindex=0;
+
+
 
 
 
 class _HomeState extends State<Home> {
+  int selectindex=0;
+  @override
+  void initState() {
+   if(widget.index != null){
+     selectindex = widget.index!;
+   }else{
+     selectindex=0;
+   }
+    super.initState();
+  }
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -274,7 +288,7 @@ class _HomeState extends State<Home> {
                       selectindex=0;
                     });
                   }, icon: ImageIcon(AssetImage("images/myproducts.png",),
-                  color: selectindex==0? Color(0xff9C037F):Color(0xff6f6f6f),
+                  color: selectindex==0? Color(0xff5600d4):Color(0xff6f6f6f),
                 ),
                 ),
                 IconButton(
@@ -284,7 +298,7 @@ class _HomeState extends State<Home> {
                       selectindex=1;
                     });
                   }, icon: ImageIcon(AssetImage("images/products.png",),
-                  color: selectindex==1? Color(0xff9C037F):Color(0xff6f6f6f),),),
+                  color: selectindex==1? Color(0xff5600d4):Color(0xff6f6f6f),),),
                 IconButton(
                   iconSize: 40,
                   onPressed: (){
@@ -292,7 +306,7 @@ class _HomeState extends State<Home> {
                       selectindex=2;
                     });
                   }, icon: ImageIcon(AssetImage("images/bookings.png",),
-                  color: selectindex==2? Color(0xff9C037F):Color(0xff6f6f6f),),),
+                  color: selectindex==2? Color(0xff5600d4):Color(0xff6f6f6f),),),
                 GestureDetector( onTap: (){ _scaffoldKey.currentState!.openDrawer();
 
                 },
@@ -303,7 +317,7 @@ class _HomeState extends State<Home> {
                         selectindex=3;
                       });
                     }, icon: ImageIcon(AssetImage("images/account.png",),
-                    color: selectindex==3? Color(0xff9C037F):Color(0xff6f6f6f),),),
+                    color: selectindex==3? Color(0xff5600d4):Color(0xff6f6f6f),),),
                 ),
 
 

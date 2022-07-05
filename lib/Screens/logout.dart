@@ -16,12 +16,12 @@ class _LogoutState extends State<Logout> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xff9C037F),
+        backgroundColor: Color(0xff5600d4),
         title: Row(
           children: [
             GestureDetector( onTap: (){
               Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => MyAccount()));
+                  builder: (context) => Home()));
             },
 
                 child: Icon(Icons.arrow_back_ios)),
@@ -266,7 +266,7 @@ class _LogoutState extends State<Logout> {
                 height: 38,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(4),
-                  color: Color(0xff9c037f),
+                  color: Color(0xff5600d4),
                 ),
                 child: GestureDetector(onTap: (){
                   Navigator.push(context, MaterialPageRoute(
@@ -302,7 +302,7 @@ class _LogoutState extends State<Logout> {
     },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color(0xff9C037F),
+                    color: Color(0xff5600d4),
                   ),
                   height: 50,
                   alignment: Alignment.center,

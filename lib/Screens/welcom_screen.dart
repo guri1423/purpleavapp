@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:purpleavapp/Screens/RenterScreens/Renter_SignUp.dart';
 import 'package:purpleavapp/Screens/SignUp.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -43,7 +44,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               children:  <TextSpan>[
                 TextSpan(text: 'PURPLE AV!',
                   style: TextStyle(
-                    color: Color(0xff9c037f),
+                    color: Color(0xff5600d4),
                     fontSize: 22,
                     fontFamily: "Lato",
                     fontWeight: FontWeight.w500,
@@ -73,7 +74,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               height: 45,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
-                color: Color(0xff9c037f),
+                gradient: LinearGradient(begin: Alignment.centerRight, end: Alignment.centerLeft, colors: [Color(0xff8600e9), Color(0xff5600d4)], ),
               ),
               child: Center(
                 child: GestureDetector(onTap: (){
@@ -92,23 +93,27 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Container(
-              width: 289,
-              height: 45,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                border: Border.all(color: Color(0xff9c037f), width: 1, ),
-              ),
-              child: Center(
-                child: Text(
-                  "Register as Renter",
-                  style: TextStyle(
-                    color: Color(0xff9c037f),
-                    fontSize: 18,
-                    fontFamily: "Lato",
-                    fontWeight: FontWeight.w500,
+          GestureDetector( onTap: (){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>RenterSignUp()));
+          },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Container(
+                width: 289,
+                height: 45,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(color:Color(0xff5600d4), width: 1, ),
+                ),
+                child: Center(
+                  child: Text(
+                    "Register as End User",
+                    style: TextStyle(
+                      color: Color(0xff5600d4),
+                      fontSize: 18,
+                      fontFamily: "Lato",
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),

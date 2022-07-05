@@ -24,6 +24,7 @@ class _AddProductsState extends State<AddProducts> {
   File? _image2;
   File? _image3;
   File? _image4;
+  File? _image5;
   bool price=false;
   bool package=false;
   bool delivery=false;
@@ -33,7 +34,7 @@ class _AddProductsState extends State<AddProducts> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xff9C037F),
+        backgroundColor: Color(0xff5600d4),
         title: Row(
           children: [
             Text('Add Products',
@@ -90,7 +91,8 @@ class _AddProductsState extends State<AddProducts> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                child: CircleAvatar(radius: 20),
+                                child: Icon(Icons.arrow_forward_ios,
+                                color: Colors.white,)
                               ),
                             )
                           ],
@@ -113,7 +115,7 @@ class _AddProductsState extends State<AddProducts> {
                     height: 150,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      color: Color(0xff9c037f),
+                      color: Color(0xff5600d4),
                     ),
                   ),
                   Spacer(),
@@ -158,7 +160,8 @@ class _AddProductsState extends State<AddProducts> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                child: CircleAvatar(radius: 20),
+                                  child: Icon(Icons.arrow_forward_ios,
+                                    color: Colors.white,)
                               ),
                             )
                           ],
@@ -182,7 +185,7 @@ class _AddProductsState extends State<AddProducts> {
                     height: 150,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      color: Color(0xff9c037f),
+                      color: Color(0xff5600d4),
                     ),
                   ),
 
@@ -203,14 +206,14 @@ class _AddProductsState extends State<AddProducts> {
                     height: 50,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
-                      border: Border.all(color: Color(0xff9c037f), width: 1.50, ),
+                      border: Border.all(color: Color(0xff5600d4), width: 1.50, ),
                     ),
 
                     child: Center(
                       child: Text(
                         "Add Product",
                         style: TextStyle(
-                          color: Color(0xff9c037f),
+                          color: Color(0xff5600d4),
                           fontSize: 20,
                           fontFamily: "Lato",
                           fontWeight: FontWeight.w700,
@@ -287,7 +290,7 @@ class _AddProductsState extends State<AddProducts> {
                                       height: 45,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(4),
-                                        color: Color(0xff9c037f),
+                                        color: Color(0xff5600d4),
                                       ),
                                       child: Center(
                                         child: GestureDetector(onTap: (){
@@ -336,11 +339,11 @@ class _AddProductsState extends State<AddProducts> {
                                       height: 45,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(4),
-                                        color: Color(0xff9c037f),
+                                        color: Color(0xff5600d4),
                                       ),
                                       child: Center(
                                         child: GestureDetector(onTap: (){
-                                         getImage(ImageSource.camera).then((value) {
+                                         getImage1().then((value) {
                                            setState(() {
                                              if(_image1 == null){
                                                setState(() {
@@ -444,11 +447,14 @@ class _AddProductsState extends State<AddProducts> {
                   _image1,
                   _image2,
                   _image3,
-                  _image4
+                  _image4,
+                  _image5,
                 ];
               return  Padding(padding: EdgeInsets.only(right: MediaQuery.of(context).size.width*0.025),
               child: name[index]!= null
                   ? Container(
+
+
                 width: 82,
                 height: 84,
                 decoration: BoxDecoration(
@@ -483,29 +489,25 @@ class _AddProductsState extends State<AddProducts> {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: Color(0xff9C037F),
+                color: Color(0xff5600d4),
               ),
               height: 50,
               alignment: Alignment.center,
               width:MediaQuery.of(context).size.width,
-              child: GestureDetector(onTap: (){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SignIn()));
-              },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Center(
-                        child: Text('Upload Manual (pdf only)', style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),),
-                      ),
-                      Spacer(),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Center(
+                      child: Text('Upload Manual (pdf only)', style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),),
+                    ),
+                    Spacer(),
 
-                      Image.asset('images/pdf.png')
-                    ],
-                  ),
+                    Image.asset('images/pdf.png')
+                  ],
                 ),
               ),
             ),
@@ -537,13 +539,66 @@ class _AddProductsState extends State<AddProducts> {
             child: TextField(
               decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: 'Equipment Name (Text)',
+                hintText: 'Equipment Name *',
                 hintStyle: TextStyle(
         color: Color(0xffb9b9b9),
         fontSize: 16,
         fontFamily: "Lato",
         fontWeight: FontWeight.w500,
       ),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 5,),
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Model',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 5,),
+
+       Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Brand',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
@@ -573,7 +628,7 @@ class _AddProductsState extends State<AddProducts> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Price",
+                  Text("Price *",
                   style: TextStyle(
                           color: Color(0xffb9b9b9),
                           fontSize: 16,
@@ -599,92 +654,14 @@ class _AddProductsState extends State<AddProducts> {
             // ),
           ),
         ),
-
-       price?CustomDropDown( title:const[
+        price?CustomDropDown( title:const[
          "Weekend Special",
          "One day Price",
          "Two day Rental Price",
          "Three day Rental Price",
          "Weekly Rental Price",
        ],expand: true,hint: "price",):Container(),
-        SizedBox(height: 5,),
-        Container(
-          width: 365,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
-            color: Colors.white,
-          ),
 
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Model (Text)',
-                hintStyle: TextStyle(
-                  color: Color(0xffb9b9b9),
-                  fontSize: 16,
-                  fontFamily: "Lato",
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: 5,),
-        Container(
-          width: 365,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
-            color: Colors.white,
-          ),
-
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Brand (Text)',
-                hintStyle: TextStyle(
-                  color: Color(0xffb9b9b9),
-                  fontSize: 16,
-                  fontFamily: "Lato",
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: 5,),
-        Container(
-          width: 365,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
-            color: Colors.white,
-          ),
-
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Inventory',
-                hintStyle: TextStyle(
-                  color: Color(0xffb9b9b9),
-                  fontSize: 16,
-                  fontFamily: "Lato",
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
-        ),
         SizedBox(height: 5,),
         GestureDetector(
           onTap: (){
@@ -742,6 +719,34 @@ class _AddProductsState extends State<AddProducts> {
           "Package 2",
 
         ],expand: true,hint: "package",):Container(),
+        SizedBox(height: 5,),
+
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Inventory *',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
+        ),
+
 
         SizedBox(height: 5,),
         GestureDetector(
@@ -768,7 +773,7 @@ class _AddProductsState extends State<AddProducts> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Delivery & Pickup",
+                    Text("Delivery & Pickup *",
                       style: TextStyle(
                         color: Color(0xffb9b9b9),
                         fontSize: 16,
@@ -813,7 +818,7 @@ class _AddProductsState extends State<AddProducts> {
             child: TextField(
               decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: 'More Information (Text)',
+                hintText: 'More Information',
                 hintStyle: TextStyle(
                   color: Color(0xffb9b9b9),
                   fontSize: 16,
@@ -839,7 +844,7 @@ class _AddProductsState extends State<AddProducts> {
             child: TextField(
               decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: 'Term & Conditions (Text)',
+                hintText: 'Term & Conditions',
                 hintStyle: TextStyle(
                   color: Color(0xffb9b9b9),
                   fontSize: 16,
@@ -862,7 +867,7 @@ class _AddProductsState extends State<AddProducts> {
             height: 50,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-                color: Color(0xff9c037f),
+                color: Color(0xff5600d4),
                 borderRadius: BorderRadius.circular(20)
 
             ),

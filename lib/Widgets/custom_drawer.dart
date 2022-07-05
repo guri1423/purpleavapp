@@ -120,19 +120,12 @@ class _CustomDropDownState extends State<CustomDropDown> {
   }
 }
 
-class TextFieldDropDown extends StatefulWidget {
-  const TextFieldDropDown({Key? key}) : super(key: key);
 
-  @override
-  State<TextFieldDropDown> createState() => _TextFieldDropDownState();
-}
 
-class _TextFieldDropDownState extends State<TextFieldDropDown> {
-  @override
-  Widget build(BuildContext context) {
-    return TextField();
-  }
-}
+
+
+
+
 
 
 class CustomDropDown2 extends StatefulWidget {
@@ -199,7 +192,7 @@ class _CustomDropDown2State extends State<CustomDropDown2> {
                         ),
                         child: TextField(
                           decoration: InputDecoration(border: InputBorder.none,
-                              hintText:"Enter Price",
+                              hintText:"Enter Shipping Price",
                               contentPadding: EdgeInsets.symmetric(horizontal: 5)
                           ),
                         )),
@@ -241,6 +234,162 @@ class _CustomDropDown2State extends State<CustomDropDown2> {
   Widget addressForm(BuildContext context){
     return Column(
       children: [
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Address',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 10,),
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Land Mark',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 10,),
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Country',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 10,),
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'State',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 10,),
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'City',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 10,),
+        Container(
+          width: 365,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4),
+            border: Border.all(color: Color(0xffdbdbdb), width: 1.50, ),
+            color: Colors.white,
+          ),
+
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: TextField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Postal Code',
+                hintStyle: TextStyle(
+                  color: Color(0xffb9b9b9),
+                  fontSize: 16,
+                  fontFamily: "Lato",
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
+        ),
+
         /// here you have to add all form fieds
       ],
     );

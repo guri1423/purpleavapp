@@ -23,7 +23,7 @@ class _MyAccountState extends State<MyAccount> {
       key: _scaffoldKey,
       backgroundColor: Colors.white,
       appBar: AppBar(
-          backgroundColor: Color(0xff9C037F),
+          backgroundColor: Color(0xff5600d4),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -76,25 +76,11 @@ class _MyAccountState extends State<MyAccount> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
                   GestureDetector(
                     onTap: (){
-                      Navigator.pushReplacement(context, MaterialPageRoute(
-                          builder: (context) => PersonalDetails()));
-                    },
-                    child: Container(
-                      child: Row(
-                        children:const [
-                          Icon(Icons.person_outline,color: Colors.black,size: 20,),
-                          SizedBox(width: 15,),
-                          Text("Personal Details"),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20,),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.pushReplacement(context, MaterialPageRoute(
+                      Navigator.pop(context);
+                      Navigator.push(context, MaterialPageRoute(
                           builder: (context) => Transaction()));
                     },
                     child: Container(
@@ -253,6 +239,168 @@ class _MyAccountState extends State<MyAccount> {
 
           ],
         ),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+
+        children: [
+          SizedBox(height:  MediaQuery.of(context).padding.top),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            child: CircleAvatar(
+              radius: 40,
+            ),
+          ),
+          SizedBox(height: 10,),
+          Text(
+            "User Name",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 16,
+              fontFamily: "Nunito",
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+
+          SizedBox(height: 10,),
+          Text(
+            "username123@gmail.com",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color(0xff2d2d2d),
+              fontSize: 14,
+            ),
+          ),
+
+          SizedBox(height: 40,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                Text(
+                  "Name",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontFamily: "Nunito",
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Spacer(),
+                Text(
+                  "User name",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xff2d2d2d),
+                    fontSize: 16,
+                  ),
+                ),
+
+              ],
+            ),
+          ),
+          Divider(
+            thickness: 0.8,
+          ),
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                Text(
+                  "Email",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontFamily: "Nunito",
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Spacer(),
+                Text(
+                  "username123@gmail.com",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xff2d2d2d),
+                    fontSize: 16,
+                  ),
+                ),
+
+              ],
+            ),
+          ),
+          Divider(
+            thickness: 0.8,
+          ),
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                Text(
+                  "Password",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontFamily: "Nunito",
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Spacer(),
+                Text(
+                  "username123",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xff2d2d2d),
+                    fontSize: 16,
+                  ),
+                ),
+
+              ],
+            ),
+          ),
+          Divider(
+            thickness: 0.8,
+          ),
+
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                Text(
+                  "Phone No.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontFamily: "Nunito",
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Spacer(),
+                Text(
+                  "01234567890",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xff2d2d2d),
+                    fontSize: 16,
+                  ),
+                ),
+
+              ],
+            ),
+          ),
+
+
+
+
+        ],
       ),
 
 

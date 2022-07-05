@@ -83,7 +83,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Color(0xff9C037F),
+                      color: Color(0xff5600d4),
                     ),
                     height: 50,
                     alignment: Alignment.center,

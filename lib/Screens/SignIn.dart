@@ -165,9 +165,9 @@ class _SignInState extends State<SignIn> {
                       fillColor: MaterialStateProperty.resolveWith<Color>((
                           states) {
                         if (states.contains(MaterialState.disabled)) {
-                          return Color(0xff9C037F);
+                          return Color(0xff5600d4);
                         }
-                        return Color(0xff9C037F);
+                        return Color(0xff5600d4);
                       }),
                       value: _ischecked, onChanged: (value) {
                     _ischecked = !_ischecked;
@@ -187,7 +187,7 @@ class _SignInState extends State<SignIn> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text('Forgot Password?',
                         style: TextStyle(
-                            color: Color(0xff9C037F)
+                            color: Color(0xff5600d4)
                         ),
                         textAlign: TextAlign.right,
                       ),
@@ -208,7 +208,7 @@ class _SignInState extends State<SignIn> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Color(0xff9C037F),
+                      gradient: LinearGradient(begin: Alignment.centerRight, end: Alignment.centerLeft, colors: [Color(0xff8600e9), Color(0xff5600d4)], ),
                     ),
                     height: 50,
                     alignment: Alignment.center,

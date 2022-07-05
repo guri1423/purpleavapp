@@ -9,12 +9,24 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
+  late AnimationController animationController;
+  late Animation<double> animation;
+
+  @override
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration(milliseconds: 200),()=>animationController.forward());
 
     return Scaffold(
       backgroundColor: Colors.white,
-      
+
       body: GestureDetector(onTap:(){
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>WelcomeScreen()));
 
@@ -37,3 +49,7 @@ class _FirstScreenState extends State<FirstScreen> {
     );
   }
 }
+
+
+
+

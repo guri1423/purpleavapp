@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:purpleavapp/Screens/Add_Products.dart';
 import 'package:purpleavapp/Screens/SignIn.dart';
 import 'package:purpleavapp/Screens/home.dart';
 import 'package:purpleavapp/Screens/review.dart';
@@ -21,7 +22,7 @@ class _MyProductsState extends State<MyProducts> {
 
 
 
-        backgroundColor: Color(0xff9C037F),
+        backgroundColor: Color(0xff5600d4),
         title: Row(
           children: [
 
@@ -129,10 +130,9 @@ class _MyProductsState extends State<MyProducts> {
                                 ),
                                 child: Center(
                                   child: GestureDetector( onTap: (){
-                                    Navigator.pop(context);
                                     showDialog(context: context,
                                         builder:(BuildContext context){
-                                          return Dialog(
+                                          return Dialog (
                                               shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.circular(12),
                                               ),
@@ -161,7 +161,6 @@ class _MyProductsState extends State<MyProducts> {
                                                         SizedBox(height: 20,),
                                                         SizedBox(height: 20,),
                                                         Row(
-                                                          mainAxisSize: MainAxisSize.min,
                                                           mainAxisAlignment: MainAxisAlignment.center,
                                                           crossAxisAlignment: CrossAxisAlignment.center,
                                                           children:[
@@ -175,31 +174,38 @@ class _MyProductsState extends State<MyProducts> {
                                                               child: SizedBox(
                                                                 width: 57.61,
                                                                 height: 20.84,
-                                                                child: Center(
-                                                                  child: Text(
-                                                                    "Yes",
-                                                                    style: TextStyle(
-                                                                      color: Colors.white,
-                                                                      fontSize: 16,
-                                                                      fontFamily: "Lato",
-                                                                      fontWeight: FontWeight.w500,
+                                                                child: GestureDetector( onTap: ()
+                                                                {
+                                                                  Navigator.push(context, MaterialPageRoute(
+                                                                      builder: (context) => Home()));
+                                                                },
+                                                                  child: Center(
+                                                                    child: Text(
+                                                                      "Yes",
+                                                                      style: TextStyle(
+                                                                        color: Colors.white,
+                                                                        fontSize: 16,
+                                                                        fontFamily: "Lato",
+                                                                        fontWeight: FontWeight.w500,
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),
                                                               ),
                                                             ),
-                                                            SizedBox(width: 25,),
-                                                            Container(
-                                                              width: 132.39,
-                                                              height: 38,
-                                                              decoration: BoxDecoration(
-                                                                borderRadius: BorderRadius.circular(4),
-                                                                color: Color(0xff9c037f),
-                                                              ),
-                                                              child: GestureDetector(onTap: (){
+                                                            SizedBox(width: 15,),
+                                                            GestureDetector(
+                                                              onTap: (){
                                                                 Navigator.push(context, MaterialPageRoute(
-                                                                    builder: (context) => MyProducts()));
+                                                                    builder: (context) => Home(index: 1,)));
                                                               },
+                                                              child: Container(
+                                                                width: 132.39,
+                                                                height: 38,
+                                                                decoration: BoxDecoration(
+                                                                  borderRadius: BorderRadius.circular(4),
+                                                                  color: Color(0xff5600d4),
+                                                                ),
                                                                 child: Center(
                                                                   child: Text(
                                                                     "No",

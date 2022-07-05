@@ -18,7 +18,7 @@ class _ReviewState extends State<Review> {
 
 
 
-        backgroundColor: Color(0xff9C037F),
+        backgroundColor: Color(0xff5600d4),
         title: Row(
           children: [
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:purpleavapp/Screens/My_Account.dart';
 import 'package:purpleavapp/Screens/home.dart';
 
 class Contactus extends StatefulWidget {
@@ -13,7 +14,8 @@ class _ContactusState extends State<Contactus> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff9C037F),
+        automaticallyImplyLeading: false,
+        backgroundColor: Color(0xff5600d4),
         title: Row(
           children: [
             GestureDetector( onTap: (){
@@ -153,7 +155,7 @@ class _ContactusState extends State<Contactus> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color(0xff9C037F),
+                    color: Color(0xff5600d4),
                   ),
                   height: 50,
                   alignment: Alignment.center,

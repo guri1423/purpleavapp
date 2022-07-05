@@ -42,6 +42,8 @@ dependencies:
   hive:
   hive_flutter:
   path_provider:
+  http:
+  animated_splash_screen: ^1.3.0
 
 dev_dependencies:
 
@@ -83,6 +85,29 @@ flutter:
     - images/upload.png
     - images/google-pay 1.png
     - images/pdf.png
+    - images/homerenter.png
+    - images/cartrenter.png
+    - images/Bookingrenter.png
+    - images/rentermyaccount.png
+    - images/heart.png
+    - images/guitarrenter1.png
+    - images/cableconnector.png
+    - images/exportleg.png
+    - images/mic.png
+    - images/others.png
+    - images/podium.png
+    - images/podiumMic.png
+    - images/speaker.png
+    - images/Uplight.png
+    - images/videowall.png
+    - images/electricGuitar.png
+    - images/guitaricon.png
+    - images/cartimage.png
+    - images/pic1.png
+    - images/pic2.png
+    - images/pic3.png
+    - images/pic4.png
+    - images/pic5.png
 
 
 

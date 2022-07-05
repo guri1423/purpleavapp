@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:purpleavapp/Screens/My_Account.dart';
 
 import 'home.dart';
 
@@ -16,12 +17,11 @@ class _TransactionState extends State<Transaction> {
 
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xff9C037F),
+        backgroundColor: Color(0xff5600d4),
         title: Row(
           children: [
             GestureDetector( onTap: (){
-              Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => Home()));
+            Navigator.pop(context);
             },
 
                 child: Icon(Icons.arrow_back_ios)),
