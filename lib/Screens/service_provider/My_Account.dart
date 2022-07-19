@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:purpleavapp/Screens/Contact_us.dart';
-import 'package:purpleavapp/Screens/ForgotPassword.dart';
-import 'package:purpleavapp/Screens/Personal_Details.dart';
-import 'package:purpleavapp/Screens/SignIn.dart';
-import 'package:purpleavapp/Screens/Transactions.dart';
-import 'package:purpleavapp/Screens/home.dart';
-import 'package:purpleavapp/Screens/logout.dart';
+import 'package:purpleavapp/Screens/service_provider/Contact_us.dart';
+import 'package:purpleavapp/Screens/service_provider/ForgotPassword.dart';
+import 'package:purpleavapp/Screens/service_provider/Personal_Details.dart';
+import 'package:purpleavapp/Screens/service_provider/SignIn.dart';
+import 'package:purpleavapp/Screens/service_provider/Transactions.dart';
+import 'package:purpleavapp/Screens/service_provider/home.dart';
+import 'package:purpleavapp/Screens/service_provider/logout.dart';
 import 'package:purpleavapp/main.dart';
 
 class MyAccount extends StatefulWidget {
@@ -95,7 +95,7 @@ class _MyAccountState extends State<MyAccount> {
                   ),
                   SizedBox(height: 20,),
                   GestureDetector( onTap: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(
+                    Navigator.push(context, MaterialPageRoute(
                         builder: (context) => Contactus()));
                   },
                     child: Container(

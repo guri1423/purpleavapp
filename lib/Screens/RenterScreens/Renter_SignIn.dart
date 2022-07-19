@@ -3,15 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:purpleavapp/Screens/ForgotPassword.dart';
+import 'package:purpleavapp/Screens/service_provider/ForgotPassword.dart';
 import 'package:purpleavapp/Screens/RenterScreens/Renter_ForgotPassword.dart';
 import 'package:purpleavapp/Screens/RenterScreens/Main_Screen.dart';
 import 'package:purpleavapp/Screens/RenterScreens/Renter_SignUp.dart';
-import 'package:purpleavapp/Screens/SignUp.dart';
-import 'package:purpleavapp/Screens/home.dart';
+import 'package:purpleavapp/Screens/service_provider/SignUp.dart';
+import 'package:purpleavapp/Screens/service_provider/home.dart';
 import 'dart:io';
 
 import 'package:purpleavapp/Screens/welcom_screen.dart';
+import 'package:purpleavapp/Services/storage_services.dart';
+
+import '../../Modal/SignIn_Modal.dart';
+import '../../Services/ApiServices.dart';
 class RenterSignIn extends StatefulWidget {
   const RenterSignIn({Key? key}) : super(key: key);
 
@@ -32,30 +36,68 @@ class _RenterSignInState extends State<RenterSignIn> {
   bool _showPassword = false;
   bool _ischecked=false;
 
+  final StorageServices _services = StorageServices();
+
   late Box box1;
 
-  void iniState(){
-    super.initState();
-    createBox();
-    getdata();
-  }
-  void createBox()async{
-    box1= await Hive.openBox('logindata');
-  }
-  void getdata(){
-    if(box1.get('email')!= null){
-      _email.text = box1.get('email');
-    }
-    if(box1.get('password')!= null){
-      _password.text = box1.get('password');
-
+  getEmailAndPass() async {
+    print("hello");
+    _email.text = await _services.getEmail() ?? "";
+    _password.text = await _services.getPass() ?? "";
+    debugPrint(await _services.getPass());
+    if (await _services.getPass() != null) {
+      setState(() {
+        _ischecked = true;
+      });
+    } else {
+      setState(() {
+        _ischecked = false;
+      });
     }
   }
 
-  void login(){
-    if(_ischecked){
+  void login() {
+    if (_ischecked) {
       box1.put('email', _email.text);
       box1.put('password', _password.text);
+    }
+  }
+
+
+
+  // void iniState(){
+  //   super.initState();
+  //   createBox();
+  //   getdata();
+  // }
+
+  // void createBox()async{
+  //   box1= await Hive.openBox('logindata');
+  // }
+  // void getdata(){
+  //   if(box1.get('email')!= null){
+  //     _email.text = box1.get('email');
+  //   }
+  //   if(box1.get('password')!= null){
+  //     _password.text = box1.get('password');
+  //
+  //   }
+  // }
+  //
+  // void login(){
+  //   if(_ischecked){
+  //     box1.put('email', _email.text);
+  //     box1.put('password', _password.text);
+  //   }
+  // }
+
+  userSignIn(Login model)async{
+    bool ? status = await userLogin(model);
+    if(status!){
+      print("user registered");
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> Renter_Home()));
+    }else{
+      print("try again later");
     }
   }
 
@@ -147,6 +189,9 @@ class _RenterSignInState extends State<RenterSignIn> {
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(12),
                       hintText: 'Enter Password',
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
                       suffixIcon: GestureDetector(
                         onTap: () {
                           setState(() {
@@ -165,19 +210,21 @@ class _RenterSignInState extends State<RenterSignIn> {
               Row(mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Checkbox(
-                      fillColor: MaterialStateProperty.resolveWith<Color>((
-                          states) {
+                      fillColor: MaterialStateProperty.resolveWith<Color>((states) {
                         if (states.contains(MaterialState.disabled)) {
                           return Color(0xff5600d4);
                         }
                         return Color(0xff5600d4);
                       }),
-                      value: _ischecked, onChanged: (value) {
-                    _ischecked = !_ischecked;
-                    setState(() {
-
-                    });
-                  }),
+                      value: _ischecked,
+                      onChanged: (value) {
+                        _ischecked = !_ischecked;
+                        setState(() {});
+                        if (_ischecked) {
+                        } else {
+                          _services.removeEmailAndPass();
+                        }
+                      }),
                   Text('Remember Me'),
 
                   Spacer(),
@@ -203,10 +250,11 @@ class _RenterSignInState extends State<RenterSignIn> {
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
                   onTap: () {
-                    login();
-
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => Renter_Home()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> Renter_Home()));
+                    userSignIn(Login(
+                        email: _email.text,
+                        password: _password.text
+                    ));
 
                   },
                   child: Container(

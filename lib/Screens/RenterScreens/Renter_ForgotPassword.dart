@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:purpleavapp/Screens/ChangePassword.dart';
+import 'package:purpleavapp/Screens/service_provider/ChangePassword.dart';
 import 'package:purpleavapp/Screens/RenterScreens/Renter_Otp.dart';
 import 'package:purpleavapp/Screens/RenterScreens/Renter_SignIn.dart';
-import 'package:purpleavapp/Screens/SignIn.dart';
-import 'package:purpleavapp/Screens/home.dart';
-import 'package:purpleavapp/Screens/otp.dart';
+import 'package:purpleavapp/Screens/service_provider/SignIn.dart';
+import 'package:purpleavapp/Screens/service_provider/home.dart';
+import 'package:purpleavapp/Screens/service_provider/otp.dart';
 
 class RenterForgotPassword extends StatefulWidget {
   const RenterForgotPassword({Key? key}) : super(key: key);

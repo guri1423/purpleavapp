@@ -1,12 +1,16 @@
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:purpleavapp/Screens/RenterScreens/Renter_SignIn.dart';
-import 'package:purpleavapp/Screens/SignIn.dart';
+
 import 'package:flutter/gestures.dart';
-import 'package:purpleavapp/Screens/first_screen.dart';
+
 import 'package:purpleavapp/Screens/welcom_screen.dart';
+
+import '../../Modal/SignUp_Modal.dart';
+import '../../Services/ApiServices.dart';
 
 
 
@@ -41,9 +45,32 @@ class _RenterSignUpState extends State<RenterSignUp> {
   }
 
 
-
+  final TextEditingController _emailController=TextEditingController();
+  final TextEditingController _userController=TextEditingController();
+  final TextEditingController _phoneNoController=TextEditingController();
   final TextEditingController _password=TextEditingController();
   bool _showPassword = false;
+
+  userSignUp(Register model)async{
+    bool ? status = await userRegister(model) ;
+    if(status!){
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> RenterSignIn()));
+    }else{
+      print("please try again");
+    }
+    //
+    // var jsonResponse = json.decode(response.body);
+    //
+    // print(jsonResponse);
+    // if(jsonResponse['message']=="User Registered Successfully |")
+    // {Navigator.push(context, MaterialPageRoute(builder: (context)=> RenterSignIn()));
+    // }else{
+    //   print("try again later");
+    // }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -269,6 +296,9 @@ class _RenterSignUpState extends State<RenterSignUp> {
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(12),
                         hintText: 'Enter Password',
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                          ),
                         suffixIcon: GestureDetector(
                           onTap: () {
                             setState(() {
@@ -300,6 +330,13 @@ class _RenterSignUpState extends State<RenterSignUp> {
                   padding: const EdgeInsets.all(8.0),
                   child: GestureDetector(
                     onTap:(){
+                      userSignUp(Register(
+                        name: _userController.text,
+                        password: _password.text,
+                        email: _emailController.text,
+                        phone: _phoneNoController.text,
+
+                      ));
 
                     },
                     child: Container(

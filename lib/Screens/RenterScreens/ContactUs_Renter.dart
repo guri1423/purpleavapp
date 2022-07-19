@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:purpleavapp/Screens/RenterScreens/Main_Screen.dart';
-import 'package:purpleavapp/Screens/RenterScreens/MyAccount_Screen.dart';
-import 'package:purpleavapp/Screens/home.dart';
+
+
+import '../../Modal/renter_model/contact_modal.dart';
+import '../../Services/ApiServices.dart';
 
 class ContactusRenter extends StatefulWidget {
   const ContactusRenter({Key? key}) : super(key: key);
@@ -11,6 +12,21 @@ class ContactusRenter extends StatefulWidget {
 }
 
 class _ContactusRenterState extends State<ContactusRenter> {
+  addData(Contact model)async{
+    bool ? status = await contactDetails(model);
+    if(status!){
+      print("data added");
+      Navigator.pop(context);
+    }else{
+      print("try again later");
+    }
+  }
+
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _phone = TextEditingController();
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _message = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +81,7 @@ class _ContactusRenterState extends State<ContactusRenter> {
               ),
 
               child: TextField(
+                controller: _name,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter Name',
@@ -88,6 +105,7 @@ class _ContactusRenterState extends State<ContactusRenter> {
               ),
 
               child: TextField(
+                controller: _email,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter Email',
@@ -111,6 +129,7 @@ class _ContactusRenterState extends State<ContactusRenter> {
               ),
 
               child: TextField(
+                controller: _phone,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter Phone Number',
@@ -134,6 +153,7 @@ class _ContactusRenterState extends State<ContactusRenter> {
               ),
 
               child: TextField(
+                controller: _message,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Enter Your Message',
@@ -151,7 +171,12 @@ class _ContactusRenterState extends State<ContactusRenter> {
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
                 onTap: () {
-
+                  addData(Contact(
+                    name: _name.text,
+                    email: _email.text,
+                    phone: _phone.text,
+                    message: _message.text,
+                  ));
                 },
                 child: Container(
                   decoration: BoxDecoration(

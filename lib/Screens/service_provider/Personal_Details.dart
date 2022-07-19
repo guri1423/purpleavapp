@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:purpleavapp/Screens/SignIn.dart';
-import 'package:purpleavapp/Screens/home.dart';
+import 'package:purpleavapp/Screens/service_provider/SignIn.dart';
+import 'package:purpleavapp/Screens/service_provider/home.dart';
 import 'package:purpleavapp/main.dart';
 
 class PersonalDetails extends StatefulWidget {
@@ -17,7 +17,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xff9C037F),
+        backgroundColor: Color(0xff5600d4),
         title: Row(
           children: [
             GestureDetector( onTap: (){

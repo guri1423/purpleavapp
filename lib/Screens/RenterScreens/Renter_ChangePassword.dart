@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:purpleavapp/Screens/SignIn.dart';
-import 'package:purpleavapp/Screens/otp.dart';
+import 'package:purpleavapp/Screens/service_provider/SignIn.dart';
+import 'package:purpleavapp/Screens/service_provider/otp.dart';
 
 class Renter_Change_Password extends StatefulWidget {
   const Renter_Change_Password({Key? key}) : super(key: key);

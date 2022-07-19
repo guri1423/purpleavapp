@@ -166,7 +166,8 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
               SizedBox(height: 10,),
               Text(
-                "Brand: Shure\nModel: Sv100",
+                "Brand: \$${widget.product.brand}\n"
+                    "Model: \$${widget.product.model}",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -204,7 +205,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
               SizedBox(height: 10,),
               Text(
-                "Lorem Ipsum is simply dummy text of the printing and type\nsetting industry. Lorem Ipsum has been the industry's stan\ndummy text ever since the 1500s, when an unknown printer\ntook a galley of type and scrambled it to make a type\nspecimen book.",
+                widget.product.termsConditions!,
                 style: TextStyle(
                   color: Color(0xff6f6f6f),
                   fontSize: 12,
@@ -240,7 +241,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children:[
                     Text(
-                      "Qyantity: ",
+                      "Quantity: ",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16,
@@ -351,7 +352,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     Spacer(),
                     Text(
-                      "\$ 5",
+                        "\$${widget.product.twoDayPrice}",
                       style: TextStyle(
                         color: Color(0xff5600d4),
                         fontSize: 18,
@@ -396,7 +397,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     Spacer(),
                     Text(
-                      "\$ 5",
+                      "\$${widget.product.weekendPrice}",
                       style: TextStyle(
                         color: Color(0xff5600d4),
                         fontSize: 18,
@@ -441,7 +442,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     Spacer(),
                     Text(
-                      "\$ 5",
+                      "\$${widget.product.perDayPrice}",
                       style: TextStyle(
                         color: Color(0xff5600d4),
                         fontSize: 18,
@@ -486,7 +487,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     Spacer(),
                     Text(
-                      "\$ 5",
+                        "\$${widget.product.twoDayPrice}",
                       style: TextStyle(
                         color: Color(0xff5600d4),
                         fontSize: 18,
@@ -531,7 +532,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     Spacer(),
                     Text(
-                      "\$ 5",
+                      "\$${widget.product.twoDayPrice}",
                       style: TextStyle(
                         color: Color(0xff5600d4),
                         fontSize: 18,
@@ -576,7 +577,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     Spacer(),
                     Text(
-                      "\$ 5",
+                      "\$${widget.product.weeklyPrice}",
                       style: TextStyle(
                         color: Color(0xff5600d4),
                         fontSize: 18,
@@ -631,7 +632,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     Spacer(),
                     Text(
-                      "\$ 5",
+                    "\$${widget.product.package1}",
                       style: TextStyle(
                         color: Color(0xff5600d4),
                         fontSize: 18,
@@ -676,7 +677,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     Spacer(),
                     Text(
-                      "\$ 5",
+                      "\$${widget.product.package1}",
                       style: TextStyle(
                         color: Color(0xff5600d4),
                         fontSize: 18,

@@ -1,11 +1,13 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:purpleavapp/Modal/SignUp_Modal.dart';
-import 'package:purpleavapp/Screens/SignIn.dart';
+import 'package:purpleavapp/Screens/service_provider/SignIn.dart';
 import 'package:flutter/gestures.dart';
-import 'package:purpleavapp/Screens/first_screen.dart';
+import 'package:purpleavapp/Screens/service_provider/first_screen.dart';
+import 'package:purpleavapp/Screens/service_provider/home.dart';
 import 'package:purpleavapp/Screens/welcom_screen.dart';
 import 'package:purpleavapp/Services/ApiServices.dart';
 
@@ -24,6 +26,8 @@ bool _showPassword = false;
 class _SignUpState extends State<SignUp> {
 
 
+
+
     final TextEditingController _password = TextEditingController();
     final TextEditingController _emailController=TextEditingController();
     final TextEditingController _userController=TextEditingController();
@@ -37,11 +41,6 @@ class _SignUpState extends State<SignUp> {
       debugPrint(_userController.text);
       debugPrint(_phoneNoController.text);
 
-      await signup(SignUpRequestModel(name: _userController.text,
-          email: _emailController.text,
-          phoneNo: _phoneNoController.text,
-          password: _password.text)
-      );
     }
 
   File? _image;
@@ -62,6 +61,18 @@ class _SignUpState extends State<SignUp> {
 
     });
   }
+
+    userSignUp(Register model)async{
+      bool ? status = await userRegister(model) ;
+
+      if(status!){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> Home()));
+      }else{
+        /// here you can add dialog box
+        print("please try again");
+      }
+
+    }
 
 
 
@@ -272,6 +283,7 @@ class _SignUpState extends State<SignUp> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
+                      textInputAction: TextInputAction.next,
                       controller: _userController,
                       decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(12),
@@ -286,6 +298,7 @@ class _SignUpState extends State<SignUp> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      textInputAction: TextInputAction.next,
                       controller: _emailController,
                       decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(12),
@@ -300,12 +313,16 @@ class _SignUpState extends State<SignUp> {
                   Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
+                        textInputAction: TextInputAction.next,
 
                         obscureText: _showPassword,
                         controller: _password,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(12),
                           hintText: 'Enter Password',
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                            ),
                           suffixIcon: GestureDetector(
                             onTap: () {
                               setState(() {
@@ -324,6 +341,7 @@ class _SignUpState extends State<SignUp> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+
                       controller: _phoneNoController,
                       decoration: InputDecoration(
                           contentPadding: const EdgeInsets.all(12),
@@ -339,7 +357,25 @@ class _SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.all(8.0),
                     child: GestureDetector(
                       onTap: () {
-                        registration();
+
+                        userSignUp(Register(
+                              name: _userController.text,
+                              password: _password.text,
+                              email: _emailController.text,
+                              phone: _phoneNoController.text,
+
+                            ));
+                        // userRegister(Register(
+                        //   name: _userController.text,
+                        //   password: _password.text,
+                        //   email: _emailController.text,
+                        //   phone: _phoneNoController.text,
+                        //
+                        // ));
+
+                          // Navigator.pushReplacement(context, MaterialPageRoute(
+                          //     builder: (context) => Home()));
+
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -353,16 +389,11 @@ class _SignUpState extends State<SignUp> {
                             .of(context)
                             .size
                             .width,
-                        child: GestureDetector(onTap: () {
-                          Navigator.pushReplacement(context, MaterialPageRoute(
-                              builder: (context) => SignIn()));
-                        },
-                          child: Center(
-                            child: Text('Register ', style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                            ),),
-                          ),
+                        child: Center(
+                          child: Text('Register ', style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),),
                         ),
                       ),
                     ),

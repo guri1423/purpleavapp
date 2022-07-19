@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:purpleavapp/Screens/Add_Products.dart';
-import 'package:purpleavapp/Screens/Bookings.dart';
-import 'package:purpleavapp/Screens/Contact_us.dart';
-import 'package:purpleavapp/Screens/My_Account.dart';
-import 'package:purpleavapp/Screens/My_Products.dart';
-import 'package:purpleavapp/Screens/Personal_Details.dart';
-import 'package:purpleavapp/Screens/Transactions.dart';
-import 'package:purpleavapp/Screens/logout.dart';
-
+import 'package:purpleavapp/Screens/service_provider/Add_Products.dart';
+import 'package:purpleavapp/Screens/service_provider/Bookings.dart';
+import 'package:purpleavapp/Screens/service_provider/Contact_us.dart';
+import 'package:purpleavapp/Screens/service_provider/My_Account.dart';
+import 'package:purpleavapp/Screens/service_provider/My_Products.dart';
+import 'package:purpleavapp/Screens/service_provider/Personal_Details.dart';
+import 'package:purpleavapp/Screens/service_provider/Transactions.dart';
+import 'package:purpleavapp/Screens/service_provider/logout.dart';
+import 'dart:io' show Platform;
 class Home extends StatefulWidget {
   int? index;
  Home({Key? key,
@@ -275,7 +275,7 @@ class _HomeState extends State<Home> {
 
       bottomNavigationBar: BottomAppBar(
         child: Container(
-          height: 60,
+          height:Platform.isIOS?60:80,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Row(

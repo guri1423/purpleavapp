@@ -1,7 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:purpleavapp/Screens/SignIn.dart';
-import 'package:purpleavapp/Screens/otp.dart';
+import 'package:purpleavapp/Modal/SignIn_Modal.dart';
+import 'package:purpleavapp/Modal/create_password_model.dart';
+import 'package:purpleavapp/Screens/service_provider/ForgotPassword.dart';
+import 'package:purpleavapp/Screens/service_provider/SignIn.dart';
+import 'package:purpleavapp/Screens/service_provider/otp.dart';
+
+import '../../Services/ApiServices.dart';
 
 class Change_Password extends StatefulWidget {
   const Change_Password({Key? key}) : super(key: key);
@@ -11,6 +16,21 @@ class Change_Password extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<Change_Password> {
+  final TextEditingController _emailcontroller= TextEditingController();
+  final TextEditingController _newpasscontroller= TextEditingController();
+  final TextEditingController _confirmpasscontroller= TextEditingController();
+
+  changePassword(CreateNewPasswordModal modal) async{
+    bool? status = await newPassword(modal);
+    if(status!){ print("Password changed");
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> SignIn()));
+
+    }
+    else{
+      print("try again");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +50,7 @@ class _ChangePasswordState extends State<Change_Password> {
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: GestureDetector( onTap: (){
                             Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => Otp()));
+                                builder: (context) => ForgotPassword()));
                           },
 
                               child: Icon(Icons.arrow_back_ios)),
@@ -63,10 +83,26 @@ class _ChangePasswordState extends State<Change_Password> {
 
 
               ),
+              Padding(
+
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller: _emailcontroller,
+                  decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(12),
+                      hintText: 'Enter your email',
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                      )
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
 
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
+                  controller: _newpasscontroller,
                   decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(12),
                       hintText: 'New Password',
@@ -80,6 +116,7 @@ class _ChangePasswordState extends State<Change_Password> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
+                  controller: _confirmpasscontroller,
                   decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(12),
                       hintText: 'Confirm Password',
@@ -94,7 +131,13 @@ class _ChangePasswordState extends State<Change_Password> {
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
                   onTap:(){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SignIn()));
+                    changePassword( CreateNewPasswordModal(
+                        email: _emailcontroller.text,
+                        password:_newpasscontroller.text,
+                        confirmpassword: _confirmpasscontroller.text
+
+                    ));
+
 
                   },
                   child: Container(
@@ -104,15 +147,11 @@ class _ChangePasswordState extends State<Change_Password> {
                     height: 50,
                     alignment: Alignment.center,
                     width:MediaQuery.of(context).size.width,
-                    child: GestureDetector(onTap: (){
-
-                    },
-                      child: Center(
-                        child: Text('Confirm', style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),),
-                      ),
+                    child: Center(
+                      child: Text('Confirm', style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),),
                     ),
                   ),
                 ),

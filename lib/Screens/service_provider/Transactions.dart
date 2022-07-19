@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:purpleavapp/Screens/My_Account.dart';
+import 'package:purpleavapp/Screens/service_provider/My_Account.dart';
 
 import 'home.dart';
 

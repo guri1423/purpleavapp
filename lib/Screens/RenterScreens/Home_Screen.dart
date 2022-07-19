@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:purpleavapp/Screens/RenterScreens/viewproducts.dart';
+import 'package:purpleavapp/Screens/RenterScreens/wishlist.dart';
 
 class RenterHome extends StatefulWidget {
   const RenterHome({Key? key}) : super(key: key);
@@ -27,18 +28,24 @@ class _RenterHomeState extends State<RenterHome> {
             Text('Home',
             ),
             Spacer(),
-            Row(
-              children: [
-                Image.asset('images/heart.png'),
-                SizedBox(width: 10,),
-                Text('My List',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontFamily: "Lato",
-                  ),
+            GestureDetector( onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> Wishlist()));
+            },
+              child: Container(
+                child: Row(
+                  children: [
+                    Image.asset('images/heart.png'),
+                    SizedBox(width: 10,),
+                    Text('My List',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontFamily: "Lato",
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             )
           ],
         ),

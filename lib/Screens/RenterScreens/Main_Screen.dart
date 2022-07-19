@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:purpleavapp/Screens/Add_Products.dart';
-import 'package:purpleavapp/Screens/Bookings.dart';
-import 'package:purpleavapp/Screens/Contact_us.dart';
-import 'package:purpleavapp/Screens/My_Account.dart';
-import 'package:purpleavapp/Screens/My_Products.dart';
-import 'package:purpleavapp/Screens/Personal_Details.dart';
+import 'package:purpleavapp/Screens/service_provider/Add_Products.dart';
+import 'package:purpleavapp/Screens/service_provider/Bookings.dart';
+import 'package:purpleavapp/Screens/service_provider/Contact_us.dart';
+import 'package:purpleavapp/Screens/service_provider/My_Account.dart';
+import 'package:purpleavapp/Screens/service_provider/My_Products.dart';
+import 'package:purpleavapp/Screens/service_provider/Personal_Details.dart';
 import 'package:purpleavapp/Screens/RenterScreens/Bookings_Screen.dart';
 import 'package:purpleavapp/Screens/RenterScreens/Cart_Screen.dart';
 import 'package:purpleavapp/Screens/RenterScreens/Home_Screen.dart';
 import 'package:purpleavapp/Screens/RenterScreens/MyAccount_Screen.dart';
-import 'package:purpleavapp/Screens/Transactions.dart';
-import 'package:purpleavapp/Screens/logout.dart';
+import 'package:purpleavapp/Screens/service_provider/Transactions.dart';
+import 'package:purpleavapp/Screens/service_provider/logout.dart';
 
 class Renter_Home extends StatefulWidget {
   const Renter_Home({Key? key}) : super(key: key);
@@ -108,7 +108,7 @@ class _Renter_HomeState extends State<Renter_Home> {
                   ),
                   SizedBox(height: 20,),
                   GestureDetector( onTap: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(
+                    Navigator.push(context, MaterialPageRoute(
                         builder: (context) => Contactus()));
                   },
                     child: Container(

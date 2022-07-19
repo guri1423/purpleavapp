@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:purpleavapp/Screens/My_Account.dart';
-import 'package:purpleavapp/Screens/SignIn.dart';
-import 'package:purpleavapp/Screens/home.dart';
+import 'package:purpleavapp/Screens/service_provider/My_Account.dart';
+import 'package:purpleavapp/Screens/service_provider/SignIn.dart';
+import 'package:purpleavapp/Screens/service_provider/home.dart';
 
 class Logout extends StatefulWidget {
   const Logout({Key? key}) : super(key: key);

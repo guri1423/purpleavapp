@@ -1,9 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:purpleavapp/Screens/Add_Products.dart';
-import 'package:purpleavapp/Screens/SignIn.dart';
-import 'package:purpleavapp/Screens/home.dart';
-import 'package:purpleavapp/Screens/review.dart';
+import 'package:purpleavapp/Modal/renter_model/product_model.dart';
+import 'package:purpleavapp/Screens/RenterScreens/product_details.dart';
+import 'package:purpleavapp/Screens/service_provider/Add_Products.dart';
+import 'package:purpleavapp/Screens/service_provider/SignIn.dart';
+import 'package:purpleavapp/Screens/service_provider/home.dart';
+import 'package:purpleavapp/Screens/service_provider/product_details_serviceprovider.dart';
+import 'package:purpleavapp/Screens/service_provider/review.dart';
 import 'package:purpleavapp/main.dart';
 
 class MyProducts extends StatefulWidget {
@@ -81,15 +84,21 @@ class _MyProductsState extends State<MyProducts> {
                 padding: const EdgeInsets.all(8),
                 child: Row(
                   children: [
-                    Container(
-                      // height:144,
-                      width: 120,
-                      decoration: BoxDecoration(
-                        color: Color(0xfff4f4f4),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Image.asset('images/electricGuitar.png',
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => ProductDetailsRenter()));
+                      },
+                      child: Container(
+                        // height:144,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          color: Color(0xfff4f4f4),
+                          borderRadius: BorderRadius.circular(5),
                         ),
+                        child: Image.asset('images/electricGuitar.png',
+                          ),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -97,13 +106,19 @@ class _MyProductsState extends State<MyProducts> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "Thinline Acoustic- Electric\nclassical Guitar Natural",
-                            style: TextStyle(
-                              color: Color(0xff727171),
-                              fontSize: 15,
-                              fontFamily: "Lato",
-                              fontWeight: FontWeight.w700,
+                          GestureDetector(onTap:(){
+                            Navigator.push(context, MaterialPageRoute(
+                                builder: (context) => ProductDetailsRenter()));
+
+                          },
+                            child: Text(
+                              "Thinline Acoustic- Electric\nclassical Guitar Natural",
+                              style: TextStyle(
+                                color: Color(0xff727171),
+                                fontSize: 15,
+                                fontFamily: "Lato",
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                           SizedBox(height: 10,),
@@ -126,7 +141,7 @@ class _MyProductsState extends State<MyProducts> {
                                 height: 26,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(3),
-                                  border: Border.all(color: Color(0xffd3323c), width: 1.20, ),
+                                  border: Border.all(color: Color(0xff3d77f0), width: 1.20, ),
                                 ),
                                 child: Center(
                                   child: GestureDetector( onTap: (){
@@ -196,15 +211,14 @@ class _MyProductsState extends State<MyProducts> {
                                                             SizedBox(width: 15,),
                                                             GestureDetector(
                                                               onTap: (){
-                                                                Navigator.push(context, MaterialPageRoute(
-                                                                    builder: (context) => Home(index: 1,)));
-                                                              },
+                                                                Navigator.pop(context);
+                                                                },
                                                               child: Container(
                                                                 width: 132.39,
                                                                 height: 38,
                                                                 decoration: BoxDecoration(
                                                                   borderRadius: BorderRadius.circular(4),
-                                                                  color: Color(0xff5600d4),
+                                                                  color: Color(0xff3d77f0),
                                                                 ),
                                                                 child: Center(
                                                                   child: Text(
@@ -237,7 +251,7 @@ class _MyProductsState extends State<MyProducts> {
                                     child: Text(
                                       "Remove",
                                       style: TextStyle(
-                                        color: Color(0xffd3323c),
+                                        color: Color(0xff3d77f0),
                                         fontSize: 14,
                                         fontFamily: "Lato",
                                         fontWeight: FontWeight.w600,
@@ -247,22 +261,27 @@ class _MyProductsState extends State<MyProducts> {
                                 ),
                               ),
                               SizedBox(width: 25,),
-                              Container(
-                                width: 64,
-                                height: 26,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(3),
-                                  border: Border.all(color: Color(0xff3d77f0), width: 1.20, ),
-                                ),
+                              GestureDetector(   onTap: (){
+                    Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => Home(index: 1,)));
+                    },
+                                child: Container(
+                                  width: 64,
+                                  height: 26,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(3),
+                                    border: Border.all(color: Color(0xff3d77f0), width: 1.20, ),
+                                  ),
 
-                                child: Center(
-                                  child: Text(
-                                    "Edit",
-                                    style: TextStyle(
-                                      color: Color(0xff0153fe),
-                                      fontSize: 14,
-                                      fontFamily: "Lato",
-                                      fontWeight: FontWeight.w600,
+                                  child: Center(
+                                    child: Text(
+                                      "Edit",
+                                      style: TextStyle(
+                                        color: Color(0xff0153fe),
+                                        fontSize: 14,
+                                        fontFamily: "Lato",
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ),
                                 ),

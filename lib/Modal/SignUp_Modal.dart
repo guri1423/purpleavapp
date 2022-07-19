@@ -1,40 +1,36 @@
-class SignUpResponseModel {
-  final String token;
-  final String error;
+import 'dart:convert';
 
-  SignUpResponseModel({required this.token, required this.error});
 
-  factory SignUpResponseModel.fromJson(Map<String, dynamic> json) {
-    return SignUpResponseModel(
-      token: json["token"] != null ? json["token"] : "",
-      error: json["error"] != null ? json["error"] : "",
-    );
-  }
-}
+class Register{
 
-class SignUpRequestModel {
-  String name;
-  String email;
-  String phoneNo;
-  String password;
 
-  SignUpRequestModel({
-    required this.name,
-    required this.email,
-    required this.phoneNo,
-    required this.password,
-  });
+  //constructor
+  Register({
+    this.name,
+    this.email,
+    this.password,
+    this.phone,
 
-  Map<String, dynamic> toJson() {
-    Map<String, dynamic> map = {
-      'full_name' : name.trim(),
-      'email': email.trim(),
-      'phone': phoneNo.trim(),
-      'password': password.trim(),
 
-    };
-    return map;
-  }
+});
+
+  String? name;
+  String? email;
+  String? password;
+  String? phone;
+
+  // factory Register.fromJson(Map<String, dynamic>json) => Register();
+
+  Map<String, dynamic> toJson() => {
+    "name": name,
+    "email": email,
+    "password": password,
+    "phone": phone,
+
+
+  };
 
 
 }
+
+

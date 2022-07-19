@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:purpleavapp/Screens/RenterScreens/Renter_SignUp.dart';
-import 'package:purpleavapp/Screens/SignUp.dart';
+import 'package:purpleavapp/Screens/service_provider/SignUp.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -31,7 +31,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ]
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 50),
           RichText(
             text: TextSpan(
               text: 'WELCOME ',
@@ -53,19 +53,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ],
             ),
           ),
-          SizedBox(height: 20,),
-          Text(
-            "Lorem Ipsum is simply dummy text of \nprinting and typesetting industry. Lorem\nIpsum has been the industry's standard\n",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(0xff868686),
-              fontSize: 18,
-              fontFamily: "Lato",
-              fontWeight: FontWeight.w500,
-            ),
-          ),
+          SizedBox(height: 100,),
 
-          SizedBox(height: 30,),
+
 
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),

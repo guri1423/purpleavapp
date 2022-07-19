@@ -1,19 +1,19 @@
 
 
 
-class Login{
+class ForgotPasswordService{
 
 
   //constructor
-  Login({
+  ForgotPasswordService({
     this.email,
-    this.password,
+
 
 
   });
 
   String? email;
-  String? password;
+
 
 
   // factory Register.fromJson(Map<String, dynamic>json) => Register();
@@ -21,7 +21,7 @@ class Login{
   Map<String, dynamic> toJson() => {
 
     "email": email,
-    "password": password,
+
 
 
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:purpleavapp/Screens/SignUp.dart';
-import 'package:purpleavapp/Screens/first_screen.dart';
+import 'package:purpleavapp/Screens/service_provider/SignUp.dart';
+import 'package:purpleavapp/Screens/service_provider/first_screen.dart';
 import 'package:purpleavapp/Screens/welcom_screen.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-      home: WelcomeScreen(),
+      home:FirstScreen(),
 
     );
   }

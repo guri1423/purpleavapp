@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:purpleavapp/Screens/Contact_us.dart';
-import 'package:purpleavapp/Screens/ForgotPassword.dart';
-import 'package:purpleavapp/Screens/Personal_Details.dart';
+import 'package:purpleavapp/Screens/service_provider/Contact_us.dart';
+import 'package:purpleavapp/Screens/service_provider/ForgotPassword.dart';
+import 'package:purpleavapp/Screens/service_provider/Personal_Details.dart';
 import 'package:purpleavapp/Screens/RenterScreens/ContactUs_Renter.dart';
 import 'package:purpleavapp/Screens/RenterScreens/Logout_Renter.dart';
 import 'package:purpleavapp/Screens/RenterScreens/Transactions_Renter.dart';
-import 'package:purpleavapp/Screens/SignIn.dart';
-import 'package:purpleavapp/Screens/Transactions.dart';
-import 'package:purpleavapp/Screens/home.dart';
-import 'package:purpleavapp/Screens/logout.dart';
+import 'package:purpleavapp/Screens/service_provider/SignIn.dart';
+import 'package:purpleavapp/Screens/service_provider/Transactions.dart';
+import 'package:purpleavapp/Screens/service_provider/home.dart';
+import 'package:purpleavapp/Screens/service_provider/logout.dart';
 import 'package:purpleavapp/main.dart';
 
 class MyAccountRenter extends StatefulWidget {

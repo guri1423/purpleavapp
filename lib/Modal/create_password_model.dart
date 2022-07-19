@@ -1,19 +1,21 @@
+import 'dart:convert';
 
 
-
-class Login{
+class CreateNewPasswordModal{
 
 
   //constructor
-  Login({
+  CreateNewPasswordModal({
     this.email,
     this.password,
+    this.confirmpassword,
 
 
   });
 
   String? email;
   String? password;
+  String? confirmpassword;
 
 
   // factory Register.fromJson(Map<String, dynamic>json) => Register();
@@ -21,7 +23,8 @@ class Login{
   Map<String, dynamic> toJson() => {
 
     "email": email,
-    "password": password,
+    "new_password": password,
+    "confirm_password": confirmpassword,
 
 
 

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:purpleavapp/Screens/ChangePassword.dart';
-import 'package:purpleavapp/Screens/ForgotPassword.dart';
+import 'package:purpleavapp/Screens/service_provider/ChangePassword.dart';
+import 'package:purpleavapp/Screens/service_provider/ForgotPassword.dart';
 import 'package:purpleavapp/Screens/RenterScreens/Renter_ChangePassword.dart';
 import 'package:purpleavapp/Screens/RenterScreens/Renter_ForgotPassword.dart';
 
-import '../Num_Pad.dart';
+import '../service_provider/Num_Pad.dart';
 
 class RenterOtp extends StatefulWidget {
   const RenterOtp({Key? key}) : super(key: key);

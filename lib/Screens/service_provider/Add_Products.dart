@@ -1,13 +1,17 @@
 import 'dart:io';
 
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:purpleavapp/Screens/SignIn.dart';
-import 'package:purpleavapp/Widgets/custom_drawer.dart';
-import 'package:purpleavapp/main.dart';
-import 'package:purpleavapp/Screens/SignUp.dart';
+import 'package:purpleavapp/Modal/post_product_model.dart';
+import 'package:purpleavapp/Screens/service_provider/My_Products.dart';
+import 'package:purpleavapp/Services/ApiServices.dart';
 
-import '../Widgets/image_widgets.dart';
+import 'package:purpleavapp/Widgets/custom_drawer.dart';
+
+
+import '../../Widgets/image_widgets.dart';
 
 
 class AddProducts extends StatefulWidget {
@@ -18,6 +22,44 @@ class AddProducts extends StatefulWidget {
 }
 
 class _AddProductsState extends State<AddProducts> {
+  final TextEditingController _equipment= TextEditingController();
+  final TextEditingController _model= TextEditingController();
+  final TextEditingController _brand= TextEditingController();
+  final TextEditingController _price= TextEditingController();
+  final TextEditingController _package= TextEditingController();
+  final TextEditingController _inventory= TextEditingController();
+  final TextEditingController _delivery= TextEditingController();
+  final TextEditingController _moreInformation= TextEditingController();
+  final TextEditingController _termsAndConditons= TextEditingController();
+
+  File? _file;
+
+  Future getManual1() async {
+    final file = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+    if (file != null) {
+      List<File> files = file.paths.map((path) => File(path!)).toList();
+    } else {
+      // User canceled the picker
+    }
+
+    setState(() {
+
+    });
+  }
+  userProductPost(GetAllProductsModel model) async {
+    bool? status = await postAllProducts(model);
+    if (status!) {
+      print("product added successfully");
+
+    } else {
+      print("try again later");
+    }
+  }
+
+
 
   bool form=false;
   File? _image1;
@@ -285,40 +327,40 @@ class _AddProductsState extends State<AddProducts> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(vertical: 5),
-                                    child: Container(
-                                      width: 289,
-                                      height: 45,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4),
-                                        color: Color(0xff5600d4),
-                                      ),
-                                      child: Center(
-                                        child: GestureDetector(onTap: (){
-                                          getImage(ImageSource.gallery).then((value) {
+                                    child: GestureDetector( onTap: (){
+                                      getImage(ImageSource.gallery).then((value) {
+                                        setState(() {
+                                          if(_image1 == null){
                                             setState(() {
-                                              if(_image1 == null){
-                                                setState(() {
-                                                  _image1= File(value!.path);
-                                                });
-                                              }else if(_image2 == null){
-                                                setState(() {
-                                                  _image2= File(value!.path);
-                                                });
-                                              }else if(_image3 == null){
-                                                setState(() {
-                                                  _image3= File(value!.path);
-                                                });
-                                              }else if(_image4 == null){
-                                                setState(() {
-                                                  _image4= File(value!.path);
-                                                });
-                                              }
-
-
+                                              _image1= File(value!.path);
                                             });
-                                          });
-                                          Navigator.pop(context);
-                                        },
+                                          }else if(_image2 == null){
+                                            setState(() {
+                                              _image2= File(value!.path);
+                                            });
+                                          }else if(_image3 == null){
+                                            setState(() {
+                                              _image3= File(value!.path);
+                                            });
+                                          }else if(_image4 == null){
+                                            setState(() {
+                                              _image4= File(value!.path);
+                                            });
+                                          }
+
+
+                                        });
+                                      });
+                                      Navigator.pop(context);
+                                    },
+                                      child: Container(
+                                        width: 289,
+                                        height: 45,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(4),
+                                          color: Color(0xff5600d4),
+                                        ),
+                                        child: Center(
                                           child: Text(
                                             "Import from gallery",
                                             style: TextStyle(
@@ -334,40 +376,40 @@ class _AddProductsState extends State<AddProducts> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(vertical: 5),
-                                    child: Container(
-                                      width: 289,
-                                      height: 45,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4),
-                                        color: Color(0xff5600d4),
-                                      ),
-                                      child: Center(
-                                        child: GestureDetector(onTap: (){
-                                         getImage1().then((value) {
-                                           setState(() {
-                                             if(_image1 == null){
-                                               setState(() {
-                                                 _image1= File(value!.path);
-                                               });
-                                             }else if(_image2 == null){
-                                               setState(() {
-                                                 _image2= File(value!.path);
-                                               });
-                                             }else if(_image3 == null){
-                                               setState(() {
-                                                 _image3= File(value!.path);
-                                               });
-                                             }else if(_image4 == null){
-                                               setState(() {
-                                                 _image4= File(value!.path);
-                                               });
-                                             }
+                                    child: GestureDetector( onTap: (){
+                                      getImage(ImageSource.camera).then((value) {
+                                        setState(() {
+                                          if(_image1 == null){
+                                            setState(() {
+                                              _image1= File(value!.path);
+                                            });
+                                          }else if(_image2 == null){
+                                            setState(() {
+                                              _image2= File(value!.path);
+                                            });
+                                          }else if(_image3 == null){
+                                            setState(() {
+                                              _image3= File(value!.path);
+                                            });
+                                          }else if(_image4 == null){
+                                            setState(() {
+                                              _image4= File(value!.path);
+                                            });
+                                          }
 
 
-                                           });
-                                         });
-                                          Navigator.pop(context);
-                                        },
+                                        });
+                                      });
+                                      Navigator.pop(context);
+                                    },
+                                      child: Container(
+                                        width: 289,
+                                        height: 45,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(4),
+                                          color: Color(0xff5600d4),
+                                        ),
+                                        child: Center(
                                           child: Text(
                                             "Import from Camera",
                                             style: TextStyle(
@@ -453,6 +495,20 @@ class _AddProductsState extends State<AddProducts> {
               return  Padding(padding: EdgeInsets.only(right: MediaQuery.of(context).size.width*0.025),
               child: name[index]!= null
                   ? Container(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+
+                    GestureDetector(  onTap: (){
+                      setState(() {
+                      removeImage(index);
+                      });
+              },
+                        child: Icon(Icons.cancel)
+                    ),
+                  ],
+                ),
 
 
                 width: 82,
@@ -486,6 +542,7 @@ class _AddProductsState extends State<AddProducts> {
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
             onTap:(){
+              getManual1();
             },
             child: Container(
               decoration: BoxDecoration(
@@ -537,6 +594,7 @@ class _AddProductsState extends State<AddProducts> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: TextField(
+              controller: _equipment,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Equipment Name *',
@@ -563,6 +621,7 @@ class _AddProductsState extends State<AddProducts> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: TextField(
+              controller: _model,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Model',
@@ -590,6 +649,7 @@ class _AddProductsState extends State<AddProducts> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: TextField(
+              controller: _brand,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Brand',
@@ -733,6 +793,7 @@ class _AddProductsState extends State<AddProducts> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: TextField(
+              controller: _inventory,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Inventory *',
@@ -816,6 +877,7 @@ class _AddProductsState extends State<AddProducts> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: TextField(
+              controller: _moreInformation,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'More Information',
@@ -842,6 +904,7 @@ class _AddProductsState extends State<AddProducts> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: TextField(
+              controller: _termsAndConditons,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Term & Conditions',
@@ -859,7 +922,17 @@ class _AddProductsState extends State<AddProducts> {
         SizedBox(height: 40),
         GestureDetector(
           onTap: (){
+            userProductPost(GetAllProductsModel( product: Product(
+              name: _equipment.text,
+              model: _model.text,
+              brand: _brand.text,
+              termsConditions: _termsAndConditons.text
+
+
+            )));
+
             setState(() {
+
               form=false;
             });
           },
@@ -888,10 +961,37 @@ class _AddProductsState extends State<AddProducts> {
 
       ],
     );
+
+
+
+
   }
+
+void removeImage(int index){
+  switch (index){
+    case 0:
+      _image1 =null;
+      break;
+    case 1:
+      _image2 =null;
+      break;
+    case 2:
+      _image3 =null;
+      break;
+    case 3:
+      _image4 =null;
+      break;
+  }
+}
 
 
 }
+
+
+
+
+
+
 
 
 
